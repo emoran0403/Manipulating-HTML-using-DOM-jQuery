@@ -113,22 +113,37 @@ function onPageLoad() {
         nameSpan.innerHTML = "Eric Moran";
         thirdDiv.appendChild(nameSpan);
         nameButton.removeEventListener("click", myName); // removes the event listener which adds the span, the name span is only needed once
-
-
     }
 
 
+    let fourthDiv = document.createElement("div"); // makes a div for names list
+    document.body.appendChild(fourthDiv); // appends fourthDiv to the body
+
+    let listButton = document.createElement("button"); // creates a button and calls it nameButton
+    listButton.setAttribute("type", "button"); // sets the button type attibute on nameButton
+    listButton.innerHTML = ("My frends are..."); // sets the innerHTML of nameButton, this is the text that appears on the button
+    listButton.addEventListener("click", addNames); // runs the addNames function when the button is clicked
+    fourthDiv.appendChild(listButton);
+
+    let namesList = document.createElement("ul"); // makes a list for the names list
+    fourthDiv.appendChild(namesList); // appends the names list to the fourth div
 
 
+    function addNames() { // this function creates an empty array, fills them with 'friends' named 1-10, then creates a list item for each friend and adds them to the list
 
+        let friends = [];
 
+        for (i = 1; i <= 10; i++) { // fills the array with friends!
+            let friend = `Friend ${i}`;
+            friends.push(friend);
+        }
 
+        for (j = 0; j < friends.length; j++) {
+            let newLi = document.createElement("li");
+            newLi.innerHTML = friends[j];
+            namesList.appendChild(newLi);
+        }
 
-
-
-
-
-
-
-
+        listButton.removeEventListener("click", addNames);
+    }
 };
