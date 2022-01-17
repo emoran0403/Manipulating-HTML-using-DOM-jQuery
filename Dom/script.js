@@ -8,7 +8,7 @@
 *done* Put some text in a paragraph. Make it where when you click on the paragraph, the color of the text switches to red.
              Once you get that working, try to rewrite your code to make it switch to a random color each click
                (you don't have to show the code for just red once you get random working).
-Add a button and an empty div. When the button is clicked, add a span that contains your name to the empty div.
+*done* Add a button and an empty div. When the button is clicked, add a span that contains your name to the empty div.
 Create a button and a ul in your HTML. In JavaScript, create an array containing the names of your friends
               (at least 10. If you don't have that many, include your imaginary ones). When the button is clicked, add each friend's name as an li to the ul on the page.
 */
@@ -61,32 +61,33 @@ function onPageLoad() {
     secondDiv.addEventListener("mouseover", onFunc); // adds an event listener for when the mouse enters the element
     secondDiv.addEventListener("mouseout", offFunc); // adds an event listener for when the mouse leaves the element
     secondDiv.style.backgroundColor = "AliceBlue";
-    secondDiv.style.margin = "50px";
+    //secondDiv.style.margin = "50px";
 
     document.body.appendChild(secondDiv); // appends SecondDiv to the body
 
     let divPara = document.createElement("p"); // creates a paragraph and calls it divPara
-
-
-    divPara.addEventListener("click", randomColor); // I originally had the function below with the event listener...
-    //because randomColor was set to return a value, instead of just changing the color directly
-/*
-    function noLongerNeeded () {
-        divPara.style.color = randomColor();
-    }
-    */
-
     divPara.textContent = "My background will change when you hover over my div element";
     divPara.title = "And if you click me, my text will change to a random color!";
-
+    divPara.addEventListener("click", randomColor); // I originally had the function below with the event listener...
+    //because randomColor was set to return a value, instead of just changing the color directly
+    /*
+        function noLongerNeeded () {
+            divPara.style.color = randomColor();
+        }
+        */
     secondDiv.appendChild(divPara);
 
-    function onFunc() {
+
+
+
+    function onFunc() { // changes the background color when the mouse enters the element
         this.style.backgroundColor = "LightGray";
         divPara.textContent = "Look it changed!";
     }
 
-    function offFunc() {
+
+
+    function offFunc() { // reverts the changes made to the background color when the mouse leaves the element
         this.style.backgroundColor = "AliceBlue";
         divPara.textContent = "My background will change when you hover over my div element";
     }
@@ -98,10 +99,23 @@ function onPageLoad() {
         divPara.style.color = `rgb(${r}, ${g}, ${b})`;
     }
 
+    let thirdDiv = document.createElement("div"); // makes a div for the button which will add my name in a span
+    document.body.appendChild(thirdDiv);
+
+    let nameButton = document.createElement("button"); // creates a button and calls it nameButton
+    nameButton.setAttribute("type", "button"); // sets the button type attibute on nameButton
+    nameButton.innerHTML = ("My name is..."); // sets the innerHTML of nameButton, this is the text that appears on the button
+    nameButton.addEventListener("click", myName); // looks like putting the alert here is only good for a static alert message
+    thirdDiv.appendChild(nameButton); // append the button as a child element to the body
+
+    function myName() {
+        let nameSpan = document.createElement("span"); // creates a span and calls it nameSpan
+        nameSpan.innerHTML = "Eric Moran";
+        thirdDiv.appendChild(nameSpan);
+        nameButton.removeEventListener("click", myName); // removes the event listener which adds the span, the name span is only needed once
 
 
-
-
+    }
 
 
 
