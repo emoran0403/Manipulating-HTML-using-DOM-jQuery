@@ -19,24 +19,32 @@ $(document).ready(function () {
 
 //alert("the document has loaded, and the script is properly linked to the page!")
 
-var $firstDiv = $("<div></div>")//.text("This is the first Div!"); // creates the divs within which the other elements will reside
-var $secondDiv = $("<div></div>")//.text("This is the second Div!");
-var $thirdDiv = $("<div></div>")//.text("This is the third Div!");
-var $fourthDiv = $("<div></div>")//.text("This is the fourth Div!");
+var $firstDiv = $("<div id=div1>")//.text("This is the first Div!"); // creates the divs within which the other elements will reside
+var $secondDiv = $("<div id=div2>")//.text("This is the second Div!");
+var $thirdDiv = $("<div>").attr("id", "div3")//.text("This is the third Div!");
+var $fourthDiv = $("<div>").attr("id", "div4")//.text("This is the fourth Div!");
 
 $("body").append($firstDiv, $secondDiv, $thirdDiv, $fourthDiv);
 
-var $pageLoadButton = $("<button>").text("Page has loaded, so click me!").click(function(){
+var $pageLoadButton = $("<button id=btn1>").text("Page has loaded, so click me!").click(function(){
     alert("I told you the page loaded!");
   });
+
+
 $($firstDiv).append($pageLoadButton); // looks like i dont need quotes around $firstDiv, but i do need them when referencing the body
+
 
 var $inputField = $("<input>");
 $($firstDiv).append($inputField);
 
-var $alertValueButton = $("<button>").text("Alert your Input?").click(function(){
-    alert("$alertValueButton text here");
+
+var $alertValueButton = $("<button id=btn2>").text("Alert your Input?").click(function(){
+    var inputValue = $alertValueButton.val();
+    alert(`Submitted! You entered: ${inputValue}`);
+    //console.log(inputValue);
   });
+
+
 $($firstDiv).append($alertValueButton);
 
 
