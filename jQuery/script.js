@@ -34,12 +34,16 @@ var $pageLoadButton = $("<button id=btn1>").text("Page has loaded, so click me!"
 $($firstDiv).append($pageLoadButton); // looks like i dont need quotes around $firstDiv, but i do need them when referencing the body
 
 
-var $inputField = $("<input>");
+function enableBtn() { //  This function will remove the 'disabled' attribute from the button, thus enabling the button
+    $("#btn2").prop("disabled", false);
+}
+
+var $inputField = $("<input id=inputbox>").on('keyup', enableBtn);
 $($firstDiv).append($inputField);
 
 
-var $alertValueButton = $("<button id=btn2>").text("Alert your Input?").click(function(){
-    var inputValue = $alertValueButton.val();
+var $alertValueButton = $("<button id=btn2>").prop("disabled", true).text("Alert your Input?").click(function(){
+    var inputValue = $("#inputbox").val();
     alert(`Submitted! You entered: ${inputValue}`);
     //console.log(inputValue);
   });
