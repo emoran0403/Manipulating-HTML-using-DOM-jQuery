@@ -17,39 +17,45 @@
 
 $(document).ready(function () {
 
-//alert("the document has loaded, and the script is properly linked to the page!")
+  //alert("the document has loaded, and the script is properly linked to the page!")
 
-var $firstDiv = $("<div id=div1>")//.text("This is the first Div!"); // creates the divs within which the other elements will reside
-var $secondDiv = $("<div id=div2>")//.text("This is the second Div!");
-var $thirdDiv = $("<div>").attr("id", "div3")//.text("This is the third Div!");
-var $fourthDiv = $("<div>").attr("id", "div4")//.text("This is the fourth Div!");
+  var $firstDiv = $("<div id=div1>")//.text("This is the first Div!"); // creates the divs within which the other elements will reside
+  var $secondDiv = $("<div id=div2>")//.text("This is the second Div!"); // I can set their ids in a few ways
+  /**
+   *todo is there any real difference in how I set the ids for theese divs?
+   */
+  var $thirdDiv = $("<div>").attr("id", "div3")//.text("This is the third Div!");
+  var $fourthDiv = $("<div>").attr("id", "div4")//.text("This is the fourth Div!");
 
-$("body").append($firstDiv, $secondDiv, $thirdDiv, $fourthDiv);
+  $("body").append($firstDiv, $secondDiv, $thirdDiv, $fourthDiv);
 
-var $pageLoadButton = $("<button id=btn1>").text("Page has loaded, so click me!").click(function(){
+  var $pageLoadButton = $("<button id=btn1>").text("Page has loaded, so click me!").click(function () { // makes a button, sets the id, gives it text, defines the function that fires when it is clicked
     alert("I told you the page loaded!");
   });
 
 
-$($firstDiv).append($pageLoadButton); // looks like i dont need quotes around $firstDiv, but i do need them when referencing the body
+  $($firstDiv).append($pageLoadButton);
+  /**
+   * looks like i dont need quotes around $firstDiv, but i do need them when referencing the body
+   * i think this is because "body" selects the first body element, but there is only one
+   * $firstDiv is a variable, and not an element, so i reference it with its name
+   */ 
 
-
-function enableBtn() { //  This function will remove the 'disabled' attribute from the button, thus enabling the button
+  function enableBtn() { //  This function will remove the 'disabled' attribute from the button, thus enabling the button
     $("#btn2").prop("disabled", false);
-}
+  }
 
-var $inputField = $("<input id=inputbox>").on('keyup', enableBtn);
-$($firstDiv).append($inputField);
+  var $inputField = $("<input id=inputbox>").on('keypress', enableBtn); // makes an input field, and executes the enableBtn function a character-key is pressed
+  $($firstDiv).append($inputField);
 
 
-var $alertValueButton = $("<button id=btn2>").prop("disabled", true).text("Alert your Input?").click(function(){
+  var $alertValueButton = $("<button id=btn2>").prop("disabled", true).text("Alert your Input?").click(function () { // makes a button, sets the id, gives it the disabled property, gives it text, and alerts the value from the input field
     var inputValue = $("#inputbox").val();
     alert(`Submitted! You entered: ${inputValue}`);
     //console.log(inputValue);
   });
-
-
-$($firstDiv).append($alertValueButton);
+  
+  $($firstDiv).append($alertValueButton);
 
 
 
@@ -73,3 +79,15 @@ $($firstDiv).append($alertValueButton);
 
 
 });
+
+
+/*
+extensions to get
+bracker pair colorizer 2
+prettier
+better comments
+
+
+*/
+
+
