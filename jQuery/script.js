@@ -105,4 +105,28 @@ $(document).ready(function () {
     });
 
   $($thirdDiv).append($myNameButton);
+
+  let $friendsButton = $("<button id=btn4>") // makes a button
+    .text("My frends are...") // with certain text
+    .click(function () {
+      // and a function that
+      let friends = []; // makes an empty array called friends
+
+      for (i = 1; i <= 10; i++) {
+        // with a for loop that fills the array with friends!
+        let friend = `Friend ${i}`;
+        friends.push(friend);
+      }
+
+      for (j = 1; j <= friends.length; j++) {
+        // and another loop that will add these friends to the friends list
+        let newLi = $("<li>").text(`Friend ${j}`);
+        $friendsList.append(newLi);
+      }
+
+      $friendsButton.unbind(); // and finally removes the functionality of the button, since 10 friends is quite enough
+    });
+  $($fourthDiv).append($friendsButton);
+  let $friendsList = $("<ul id=ul1>");
+  $($fourthDiv).append($friendsList);
 });
